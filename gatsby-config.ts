@@ -1,4 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -12,8 +15,8 @@ const config: GatsbyConfig = {
   plugins: [{
     resolve: 'gatsby-source-contentful',
     options: {
-      "accessToken": "jCmFZ9dRcUNoUZtbRCOaDLGs-FSggHMR-hz8arJaMhA",
-      "spaceId": "gcc0fu5j9cfp"
+      "accessToken": process.env.CONTENTFUL_ACCESS_TOKEN,
+      "spaceId": process.env.CONTENTFUL_SPACE_ID,
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-source-filesystem',
