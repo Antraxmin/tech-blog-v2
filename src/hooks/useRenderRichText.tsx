@@ -4,7 +4,7 @@ import {
   } from 'gatsby-source-contentful/rich-text'
   import { getImage } from 'gatsby-plugin-image'
   import { NodeRenderer, Options } from '@contentful/rich-text-react-renderer'
-  import { BLOCKS, INLINES } from '@contentful/rich-text-types'
+  import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
   import {
     Blockquote,
     Heading,
@@ -13,6 +13,7 @@ import {
     OrderedList,
     UnorderedList,
     Link,
+    Code,
   } from './node'
 import React from 'react'
   
@@ -23,6 +24,9 @@ import React from 'react'
   ] as const
   
   const options: Options = {
+    renderMark: {
+      [MARKS.CODE]: text => <Code>{text}</Code>,
+    },
     renderNode: {
       ...HEADERS.reduce<{ [block: string]: NodeRenderer }>((nodes, header) => {
         nodes[header] = (node, children) => (
