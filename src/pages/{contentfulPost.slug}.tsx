@@ -1,6 +1,7 @@
 import { PageProps, graphql } from 'gatsby'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import PostHead from '../components/post/PostHead'
+import PostBody from '../components/post/PostBody'
 import React from 'react'
 
 export default function Post({
@@ -16,6 +17,9 @@ export default function Post({
           contentfulPost?.thumbnail?.gatsbyImageData as IGatsbyImageData
         }
       />
+      <PostBody
+        content={contentfulPost?.content as Queries.ContentfulPostContent}
+      />
     </>
   )
 }
@@ -29,6 +33,18 @@ export const query = graphql`
       }
       category
       date
+      content {
+        raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            title
+            description
+            gatsbyImageData(width: 774)
+            __typename
+          }
+        }
+      }
     }
   }
 `
