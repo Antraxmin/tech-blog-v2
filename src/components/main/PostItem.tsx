@@ -16,12 +16,19 @@ const Wrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  width: 320px;
-  border-radius: 16px;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px; 
   border: 1px solid #E5E7EB;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease-in-out;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    max-width: 320px;
+    border-radius: 16px;
+  }
 
   &:hover {
     transform: translateY(-4px);
@@ -31,7 +38,7 @@ const Wrapper = styled(Link)`
 const Thumbnail = styled.div`
   position: relative;
   overflow: hidden;
-  height: 180px;
+  padding-top: 56.25%;
   
   &::after {
     content: '';
@@ -44,16 +51,28 @@ const Thumbnail = styled.div`
   }
 `
 
+const StyledGatsbyImage = styled(GatsbyImage)`
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`
+
 const Contents = styled.div`
-  padding: 20px;
+  padding: 16px;
   background: white;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
 `
 
 const Title = styled.div`
   display: -webkit-box;
   overflow: hidden;
   max-height: 2.4em;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -61,31 +80,51 @@ const Title = styled.div`
   -webkit-box-orient: vertical;
   line-height: 1.3;
   color: #111827;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 `
 
 const Date = styled.div`
-  margin-top: 12px;
-  font-size: 14px;
+  margin-top: 10px; 
+  font-size: 12px;
   font-weight: 400;
   color: #6B7280;
+
+  @media (min-width: 768px) {
+    margin-top: 12px;
+    font-size: 14px;
+  }
 `
 
 const Category = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 6px; 
+  margin-top: 10px;
 
   div {
-    font-size: 13px;
+    font-size: 12px;
     color: #4B5563;
     background-color: #F3F4F6;
-    padding: 4px 8px;
-    border-radius: 12px;
+    padding: 3px 6px; 
+    border-radius: 10px; 
     transition: all 0.2s ease;
 
     &:hover {
       background-color: #E5E7EB;
+    }
+  }
+
+  @media (min-width: 768px) {
+    gap: 8px;
+    margin-top: 12px;
+
+    div {
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 12px;
     }
   }
 `
@@ -95,8 +134,8 @@ const Description = styled.div`
   overflow: hidden;
   width: 100%;
   max-height: 4.5em;
-  margin-top: 16px;
-  font-size: 14px;
+  margin-top: 14px;
+  font-size: 13px;
   font-weight: 400;
   text-overflow: ellipsis;
   word-wrap: break-word;
@@ -104,6 +143,11 @@ const Description = styled.div`
   -webkit-box-orient: vertical;
   line-height: 1.5;
   color: #4B5563;
+
+  @media (min-width: 768px) {
+    margin-top: 16px;
+    font-size: 14px;
+  }
 `
 
 export default function PostItem({
@@ -117,10 +161,10 @@ export default function PostItem({
   return (
     <Wrapper to={slug as string}>
       <Thumbnail>
-        <GatsbyImage
+        <StyledGatsbyImage
           image={thumbnail}
           alt={title as string}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          objectFit="cover"
         />
       </Thumbnail>
 
