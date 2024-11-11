@@ -16,6 +16,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^16.0.0",
+    "@contentful/rich-text-types": "^17.0.0",
     "babel-plugin-styled-components": "^2.1.4",
     "dotenv": "^16.4.5",
     "gatsby": "^5.14.0",
